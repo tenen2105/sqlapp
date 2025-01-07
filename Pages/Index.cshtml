@@ -1,0 +1,40 @@
+﻿@page
+@model sqlapp.Pages.IndexModel
+@{
+    ViewData["Title"] = "Activity Log";
+}
+
+<h1>Information in the Activity Log</h1>
+
+@if (Model.Activities == null || !Model.Activities.Any())
+{
+    <p>No activity data found.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Operation Name</th>
+                <th>Status</th>
+                <th>Event Category</th>
+                <th>Resource Type</th>
+                <th>Resource</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var activity in Model.Activities)
+            {
+                <tr>
+                    <td>@activity.Id</td>
+                    <td>@activity.OperationName</td>
+                    <td>@activity.Status</td>
+                    <td>@activity.EventCategory</td>
+                    <td>@activity.ResourceType</td>
+                    <td>@activity.Resource</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
